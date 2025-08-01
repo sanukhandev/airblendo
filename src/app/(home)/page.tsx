@@ -23,7 +23,9 @@ export default function Home() {
         </div>
       </div>
       <div className="container mx-auto mt-24 px-5 md:p-0 flex flex-col items-center">
-        <h1 className="text-5xl font-bold text-center">Top Destinations</h1>
+        <h1 className="text-5xl font-bold text-blue-900 text-center">
+          Top Destinations
+        </h1>
         <p className="mt-4 text-base text-center text-gray-700">
           Much places suits your mood. Explore somewhere interesting and enjoy
           the vibes!
@@ -33,7 +35,9 @@ export default function Home() {
         </div>
       </div>
       <div className="container mx-auto mt-24 flex flex-col items-center px-10 md:px-0">
-        <h1 className="text-5xl text-center font-bold">Why book with us</h1>
+        <h1 className="text-5xl text-center text-blue-900 font-bold">
+          Why book with us
+        </h1>
 
         <div className="mt-8 grid lg:grid-cols-4 grid-cols-2 gap-5">
           <>
@@ -65,7 +69,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-24 container bg-gray-100 mx-auto grid md:grid-cols-2 grid-cols-1 rounded-lg py-10 md:py-0 px-10 md:px-0">
-        <Image src={Book} alt="book" className="rounded-lg md:rounded-l-lg" />
+        <Image src={Book} alt="booking" className="rounded-l-lg" />
         <span className="flex flex-col md:items-start items-center justify-center px-5">
           <h1 className="text-5xl text-center font-bold mt-3">
             Plan your next Vacation

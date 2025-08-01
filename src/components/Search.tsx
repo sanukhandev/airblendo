@@ -143,7 +143,7 @@ export default function BookingSearch() {
                   className="input p-2 rounded-xl outline-none"
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="gap-4">
                 <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
                   <span className="flex gap-5">
                     <h1>Check-in</h1>
