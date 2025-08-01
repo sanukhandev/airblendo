@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PlaneTakeoff, PlaneLanding } from "lucide-react";
+import { PlaneTakeoff, PlaneLanding, Hotel } from "lucide-react";
 
 const tabs = ["Flights", "Hotels", "Tours"];
 
@@ -130,61 +130,85 @@ export default function BookingSearch() {
 
           {activeTab === "Hotels" && (
             <>
-              <input
-                type="text"
-                placeholder="Destination or Hotel Name"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className="input border p-2 rounded-xl w-[40%]"
-              />
-              <div className="flex gap-4">
+              <div className="flex flex-1 items-center bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                <span className="flex gap-5">
+                  <Hotel />
+                  <h1>Select City</h1>
+                </span>
                 <input
-                  type="date"
-                  value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  className="input"
-                />
-                <input
-                  type="date"
-                  value={checkOut}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  className="input"
+                  type="text"
+                  value={from}
+                  onChange={(e) => setFrom(e.target.value)}
+                  placeholder="...city"
+                  className="input p-2 rounded-xl outline-none"
                 />
               </div>
-              <select
-                value={rooms}
-                className="input"
-                onChange={(e) => setRooms(Number(e.target.value))}
-              >
-                <option>1 Room, 2 Guests</option>
-                <option>2 Rooms, 4 Guests</option>
-              </select>
+              <div className="flex gap-4">
+                <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                  <span className="flex gap-5">
+                    <h1>Check-in</h1>
+                  </span>
+                  <input
+                    type="date"
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                    className="input outline-none"
+                  />
+                </div>
+                <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                  <span className="flex gap-5">
+                    <h1>Check-out</h1>
+                  </span>
+                  <input
+                    type="date"
+                    value={checkOut}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                    className="input outline-none"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                <select
+                  value={rooms}
+                  className="input"
+                  onChange={(e) => setRooms(Number(e.target.value))}
+                >
+                  <option>1 Room, 2 Guests</option>
+                  <option>2 Rooms, 4 Guests</option>
+                </select>
+              </div>
             </>
           )}
 
           {activeTab === "Tours" && (
             <>
-              <input
-                type="text"
-                placeholder="Location or Tour Name"
-                value={tour}
-                onChange={(e) => setTour(e.target.value)}
-                className="input"
-              />
-              <input
-                type="date"
-                value={tourDate}
-                onChange={(e) => setTourDate(e.target.value)}
-                className="input"
-              />
-              <select
-                value={tourPeople}
-                className="input"
-                onChange={(e) => setTourPeople(Number(e.target.value))}
-              >
-                <option>1 Person</option>
-                <option>Group (5+)</option>
-              </select>
+              <div className="flex flex-1 items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                <input
+                  type="text"
+                  placeholder="Location or Tour Name"
+                  value={tour}
+                  onChange={(e) => setTour(e.target.value)}
+                  className="input outline-none"
+                />
+              </div>
+              <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                <input
+                  type="date"
+                  value={tourDate}
+                  onChange={(e) => setTourDate(e.target.value)}
+                  className="input outline-none"
+                />
+              </div>
+              <div className="flex items-center justify-between bg-white border p-2 rounded-lg md:h-12 gap-5 mt-2 sm:mt-0">
+                <select
+                  value={tourPeople}
+                  className="input outline-none"
+                  onChange={(e) => setTourPeople(Number(e.target.value))}
+                >
+                  <option>1 Person</option>
+                  <option>Group (5+)</option>
+                </select>
+              </div>
             </>
           )}
         </div>
