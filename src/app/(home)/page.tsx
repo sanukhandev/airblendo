@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="mx-auto">
       <div className="home-page">
-        <div className="flex flex-col h-[90vh] sm:justify-between relative md:p-10 p-5">
+        <div className="flex flex-col h-[90vh] sm:justify-between relative md:py-10 py-5">
           <>
             <div className="p-5  text-white rounded-xl">
               <h1 className="text-2xl hidden md:block md:text-4xl font-bold">
