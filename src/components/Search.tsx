@@ -45,7 +45,7 @@ export default function BookingSearch() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-2 px-4 font-medium ${
+            className={`pointer py-2 px-4 font-medium ${
               activeTab === tab
                 ? "border-b-4 border-blue-900 text-blue-900"
                 : "text-gray-500"
