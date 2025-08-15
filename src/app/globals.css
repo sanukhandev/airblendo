@@ -131,19 +131,65 @@
   }
 }
 .home-page {
-  background-image: url("../../public/images/bgb.jpg");
+  background-image: url("../../public/images/bbg.jpg");
+  /* background:rgba(255, 255, 255, 0.22); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 98vw;
   height: 85vh !important;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 0;
-  border-radius: 20px;
+  border-radius:20px 20px;
 }
 .pointer {
   cursor: pointer;
 }
 .scroll {
   cursor: grab;
+}
+.sticky-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.overlay-section {
+  background-color: white;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease-in-out forwards;
+}
+
+.glass-card {
+  /* width: 300px; */
+  /* padding: 2rem; */
+  /* border-radius: 20px; */
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* Style for select options */
+.glass-card select option {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+/* Custom grid layouts */
+.grid-rows-1fr-50px {
+  grid-template-rows: 1fr 50px;
+}
+
+.grid-rows-1fr-100px {
+  grid-template-rows: 1fr 100px;
+}
+
+.grid-rows-2fr-50px {
+  grid-template-rows: 2fr 50px;
 }

@@ -16,7 +16,7 @@ const CityCard = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-200/10 via-gray-100/10 to-black"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-100/50 via-gray-100/10 to-black"></div>
             <h3 className="text-white/30 font-bold text-4xl uppercase relative z-10">
               {place.city_name}
             </h3>

@@ -13,7 +13,7 @@ const SectionCard = ({ cardIcon, cardName }: CardType) => {
         <div className="pr-2 md:pr-3 border-r border-black flex-shrink-0">
           {cardIcon}
         </div>
-        <h1 className="font-semibold text-sm md:text-base lg:text-lg break-words">
+        <h1 className="font-regular text-sm md:text-base lg:text-md break-words">
           {cardName}
         </h1>
       </div>

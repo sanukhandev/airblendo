@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
 
-const WorkSans = Work_Sans({
+const RubikSans = Rubik({
   subsets: ["latin"],
 });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${WorkSans.className} antialiased`}>{children}</body>
+      <body className={`${RubikSans.className} antialiased`}>{children}</body>
     </html>
   );
 }

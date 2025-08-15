@@ -1,5 +1,16 @@
 // Mock data for the learning platform
-export const flights=[
+
+export const Menu = [{
+  id: 1,
+  name: "Flights",
+  link: "/",
+  },{
+  id: 2,
+  name: "Hotels",
+  link: "/hotels",
+  }]
+
+export const flights = [
     {
       id: 1,
     airline: "Emirates",

@@ -1,8 +1,8 @@
 "use client";
 
 // import { useEffect, useState } from "react";
-import Logo from "../../../public/assets/images/logo.svg";
-import Image from "next/image";
+// import Logo from "../../../public/assets/images/logo.svg";
+// import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
@@ -27,17 +27,17 @@ export default function Footer() {
         <div className="flex flex-col text-right items-right">
           <h1 className="text-gray-900 font-bold text-2xl">Quick Links</h1>
           <p className="mt-2 text-sm">About Us</p>
-          <p className="mt-2 text-sm">Contact Us</p>{" "}
-          <p className="mt-2 text-sm">Terms of Service</p>
+          <p className="mt-2 text-sm">Contact Us</p>
           <p className="mt-2 text-sm">Refund Policy</p>
+          <p className="mt-2 text-sm">Terms of Service</p>
         </div>
         <div className="flex flex-col text-right">
           <h1 className="text-gray-900 font-bold text-2xl">User Links</h1>
-          <Link href="/console/instructor" className="mt-2 text-sm">
-            Instructor Login
-          </Link>
           <Link href="/auth/login" className="mt-2 text-sm">
-            Student Login
+            Reservations
+          </Link>{" "}
+          <Link href="/console/instructor" className="mt-2 text-sm">
+            Bookings
           </Link>
         </div>
       </div>

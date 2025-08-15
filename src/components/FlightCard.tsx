@@ -8,18 +8,18 @@ const FlightCard = () => {
   return (
     <div>
       {flights.length ? (
-        <ul className="space-y-4 mt-8">
+        <ul className="space-y-8 mt-8">
           {flights.map((flight) => (
             <li
               key={flight.id}
               className="pointer bg-blue-900 border border-slate-200 rounded-xl shadow-md hover:shadow-lg transition-shadow"
             >
               {" "}
-              <span className="flex gap-2 items-center text-white py-1 px-3 text-xs font-bold rounded-r-lg">
+              <span className="flex gap-2 items-center text-white py-2 px-3 text-xs font-bold rounded-r-lg">
                 <Plane size={18} />
                 Direct
               </span>
-              <div className="w-full bg-white mb-[-34] rounded-b-xl hover:rounded-b-none shadow-md hover:-translate-y-8 transition-transform duration-500">
+              <div className="w-full bg-white mb-[-34] rounded-b-xl hover:rounded-b-none shadow-md hover:-translate-y-9 transition-transform duration-500">
                 <div className="md:grid md:grid-cols-5 w-full">
                   <div className="flex items-center flex-row sm:flex-col justify-center col-span-1 md:border-r border-b md:border-b-0 border-dashed border-blue-900 px-4 py-6 gap-10">
                     {flight.image ? (
