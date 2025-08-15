@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "../../../components/ui/button";
 import { ArrowLeft, Plus, X } from "lucide-react";
@@ -59,6 +59,21 @@ interface Flight {
 }
 
 export default function BookingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading booking page...</p>
+        </div>
+      </div>
+    }>
+      <BookingContent />
+    </Suspense>
+  );
+}
+
+function BookingContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
