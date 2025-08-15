@@ -1,6 +1,6 @@
 import React from "react";
 import { flights } from "../../public/datasets/places";
-import { Plane, Minus, Ellipsis, Briefcase, Luggage } from "lucide-react";
+import { Plane, Ellipsis, Briefcase, Luggage } from "lucide-react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
@@ -68,7 +68,7 @@ const FlightCard = () => {
                   <div className="text-center px-6 py-10">
                     <>
                       <p className="text-xl font-bold text-blue-900">
-                        ${flight.price}
+                        ${flight.cabinClasses.economy.price}
                       </p>
                       {/* <p className="text-sm text-gray-500">per person</p> */}
                       <button

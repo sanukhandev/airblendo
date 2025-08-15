@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function FlightFilterSidebar() {
   const [price, setPrice] = useState([300]);
-  const [duration, setDuration] = useState<string[]>([3]);
+  const [duration, setDuration] = useState([3]);
   const [selectedAirlines, setSelectedAirlines] = useState<string[]>([]);
   const [stops, setStops] = useState("any");
 
@@ -24,7 +24,7 @@ export default function FlightFilterSidebar() {
 
   const handleReset = () => {
     setPrice([300]);
-    setDuration(["3"]);
+    setDuration([3]);
     setSelectedAirlines([]);
     setStops("any");
   };
@@ -52,8 +52,8 @@ export default function FlightFilterSidebar() {
           defaultValue={[3]}
           max={12}
           step={1}
-          value={duration.map(Number)}
-          onValueChange={(val) => setDuration(val.map(String))}
+          value={duration}
+          onValueChange={setDuration}
         />
       </div>
 

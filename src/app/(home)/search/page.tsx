@@ -16,25 +16,57 @@ export default async function SearchResults({ searchParams }: Props) {
   const { from, to, depart, return: ret } = await searchParams;
 
   return (
-    <div className="">
+    <div className="bg-gray-50 min-h-screen">
       <SearchHeader from={from} to={to} depart={depart} returnDate={ret} />
 
-      <div className="px-5 grid grid-cols-4 mt-15 gap-10">
-        <div className="md:grid-col-span-1 hidden sm:block">
-          <SearchFilter />
-        </div>{" "}
-        
-              <div className="col-span-4 sm:col-span-3">
-                  <span> <MobileFilter /></span>
-          <h1 className="text-2xl">
-            Outbound Flight <span className="text-2xl font-bold">{from}</span>{" "}
-            to <span className="text-2xl font-bold">{to}</span>{" "}
-          </h1>
-          <FlightCard />
+      <div className="container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Left Sidebar - Filters */}
+          <div className="lg:col-span-1">
+            <div className="hidden lg:block sticky top-6">
+              <SearchFilter />
+            </div>
+            <div className="lg:hidden mb-4">
+              <MobileFilter />
+            </div>
+          </div>
+
+          {/* Main Content - Flight Results */}
+          <div className="lg:col-span-3">
+            <div className="mb-6">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {from && to ? (
+                  <>
+                    Flights from <span className="text-blue-900">{from}</span>{" "}
+                    to <span className="text-blue-900">{to}</span>
+                  </>
+                ) : (
+                  "Flight Search Results"
+                )}
+              </h1>
+              {depart && (
+                <p className="text-gray-600">
+                  Departing{" "}
+                  {new Date(depart).toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                  {ret &&
+                    ` • Returning ${new Date(ret).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}`}
+                </p>
+              )}
+            </div>
+            <FlightCard />
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-// Dummy API
