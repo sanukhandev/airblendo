@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { flights } from "../../public/datasets/places";
 import { Plane, Luggage, MoreHorizontal, Briefcase } from "lucide-react";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import FlightOptionsPage from "./booking/FlightOptionsPage";
 import PassengerDetailsPage from "./booking/PassengerDetailsPage";
@@ -73,6 +74,7 @@ interface BookingFlow {
 }
 
 const FlightCard = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [bookingFlow, setBookingFlow] = useState<BookingFlow>({
     step: "search",
     selectedFlight: null,
@@ -102,6 +104,10 @@ const FlightCard = () => {
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const getCabinPrice = (flight: Flight, cabinClass: string): number => {
     const cabin =
@@ -200,9 +206,13 @@ const FlightCard = () => {
     });
   };
 
-  // Render different pages based on booking step
-  if (bookingFlow.step === "booking" && bookingFlow.selectedFlight) {
-    return (
+  // Render different pages based on booking step using Portal for full-screen experience
+  if (
+    bookingFlow.step === "booking" &&
+    bookingFlow.selectedFlight &&
+    isMounted
+  ) {
+    return createPortal(
       <PassengerDetailsPage
         selectedFlight={bookingFlow.selectedFlight}
         selectedCabinClass={bookingFlow.selectedCabinClass}
@@ -213,12 +223,17 @@ const FlightCard = () => {
         onContinue={handleProceedToPayment}
         onBack={() => setBookingFlow((prev) => ({ ...prev, step: "options" }))}
         onCancel={resetBookingFlow}
-      />
+      />,
+      document.body
     );
   }
 
-  if (bookingFlow.step === "payment" && bookingFlow.selectedFlight) {
-    return (
+  if (
+    bookingFlow.step === "payment" &&
+    bookingFlow.selectedFlight &&
+    isMounted
+  ) {
+    return createPortal(
       <PaymentPage
         selectedFlight={bookingFlow.selectedFlight}
         selectedCabinClass={bookingFlow.selectedCabinClass}
@@ -232,12 +247,17 @@ const FlightCard = () => {
         onCompleteBooking={handleCompleteBooking}
         onBack={() => setBookingFlow((prev) => ({ ...prev, step: "booking" }))}
         onCancel={resetBookingFlow}
-      />
+      />,
+      document.body
     );
   }
 
-  if (bookingFlow.step === "confirmation" && bookingFlow.selectedFlight) {
-    return (
+  if (
+    bookingFlow.step === "confirmation" &&
+    bookingFlow.selectedFlight &&
+    isMounted
+  ) {
+    return createPortal(
       <ConfirmationPage
         selectedFlight={bookingFlow.selectedFlight}
         selectedCabinClass={bookingFlow.selectedCabinClass}
@@ -247,7 +267,8 @@ const FlightCard = () => {
         ticketStatus={bookingFlow.ticketStatus}
         isProcessing={isProcessing}
         onBookAnother={resetBookingFlow}
-      />
+      />,
+      document.body
     );
   }
 
@@ -257,7 +278,7 @@ const FlightCard = () => {
       {bookingFlow.step === "search" && (
         <>
           {flights.length ? (
-            <ul className="space-y-8 mt-8">
+            <ul className="space-y-12 mt-8">
               {flights.map((flight) => (
                 <li
                   key={flight.id}
@@ -267,7 +288,7 @@ const FlightCard = () => {
                     <Plane size={18} />
                     Direct
                   </span>
-                  <div className="w-full bg-white mb-[-34] rounded-b-xl hover:rounded-b-none shadow-md hover:-translate-y-9 transition-transform duration-500">
+                  <div className="w-full bg-white rounded-b-xl hover:rounded-b-none shadow-md hover:-translate-y-2 transition-transform duration-300">
                     <div className="md:grid md:grid-cols-5 w-full">
                       <div className="flex items-center flex-row sm:flex-col justify-center col-span-1 md:border-r border-b md:border-b-0 border-dashed border-blue-900 px-4 py-6 gap-10">
                         {flight.image ? (

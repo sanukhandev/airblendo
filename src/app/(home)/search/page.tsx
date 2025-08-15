@@ -1,8 +1,8 @@
 // app/flights/search/page.tsx
-import FlightCard from "@/components/FlightCard";
-import SearchHeader from "@/components/SearchHeader";
-import SearchFilter from "@/components/SearchFilter";
-import MobileFilter from "@/components/MobileFilter";
+import FlightCard from "../../../components/FlightCard";
+import SearchHeader from "../../../components/SearchHeader";
+import SearchFilter from "../../../components/SearchFilter";
+import MobileFilter from "../../../components/MobileFilter";
 type Props = {
   searchParams: Promise<{
     from?: string;
