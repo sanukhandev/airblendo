@@ -53,7 +53,7 @@ export default function Home() {
         <h1 className="col-span-1 text-3xl font-bold text-blue-900 text-center">
           Our Partners
         </h1>
-        <div className="col-span-2 flex gap-10 text-center">
+        <div className="col-span-2 flex gap-15 text-center">
           {flights.map((flight) => (
             <Image
               src={flight.image}
