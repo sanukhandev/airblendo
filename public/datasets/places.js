@@ -51,7 +51,7 @@ export const flights = [
        number:"IT12",
       price: 420,
       duration: "7h 00m",
-      image: "http://upload.wikimedia.org/wikipedia/commons/e/ee/ITA_Airways_Logo.png",
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/ee/ITA_Airways_Logo.png",
          departFrom: "Rome (FCO)",
       arriveIn:"Dubai (DXB)",
        departAt: "8:20",

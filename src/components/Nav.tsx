@@ -36,19 +36,19 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              href="/products"
+              href="/search"
               className="text-gray-700 hover:text-red-400 transition-colors"
             >
               Flights
             </Link>
             <Link
-              href="/categories"
+              href="/hotels"
               className="text-gray-700 hover:text-blue-900 transition-colors"
             >
               Hotels
             </Link>
             <Link
-              href="/about"
+              href="/tours"
               className="text-gray-700 hover:text-blue-900 transition-colors"
             >
               Tours
@@ -130,22 +130,22 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            href="/products"
+            href="/search"
             className="block px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50"
           >
-            Products
+            Flights
           </Link>
           <Link
-            href="/categories"
+            href="/hotels"
             className="block px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50"
           >
-            Categories
+            Hotels
           </Link>
           <Link
-            href="/about"
+            href="/tours"
             className="block px-3 py-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50"
           >
-            About
+            Tours
           </Link>
           <Link
             href="/contact"

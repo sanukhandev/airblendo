@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { PlaneTakeoff, PlaneLanding, Hotel } from "lucide-react";
+import { PlaneTakeoff, PlaneLanding } from "lucide-react";
 
 const tabs = ["One-way", "Round-trip", "Tours"];
 
@@ -15,15 +15,9 @@ export default function BookingSearch() {
   const [ret, setRet] = useState("");
   const [adults, setAdults] = useState(1);
   const [child, setChild] = useState(1);
-  const [city, setCity] = useState("");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [rooms, setRooms] = useState(1);
-  const [guests, setGuests] = useState(2);
-  const [people, setPeople] = useState(1);
+  // Hotel and tour related states for future implementation
   const [tour, setTour] = useState("");
   const [tourDate, setTourDate] = useState("");
-  const [tourPeople, setTourPeople] = useState(1);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,7 +35,7 @@ export default function BookingSearch() {
   return (
     <div className="sm:w-[80vw] w-full mx-auto px-5 sm:py-10 py-5 bg-white/90 rounded-2xl mt-0 sm:mt-6">
       {/* Tabs */}
-      <div className="inline-block bg-white opacity-100 space-x-6 mb-3 flex items-start justify-start">
+      <div className="flex bg-white space-x-6 mb-3 items-start justify-start">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -59,7 +53,7 @@ export default function BookingSearch() {
 
       {/* Search Form */}
       <form className="text-right " onSubmit={handleSearch}>
-        <div className="md:flex bg-white opacity-100 justify-around gap-2 px-3 py-3 rounded-2xl gap-2">
+        <div className="md:flex bg-white justify-around px-3 py-3 rounded-2xl gap-2">
           {activeTab === "One-way" && (
             <div className="w-full flex justify-around gap-2">
               <div className="md:flex md:flex-1 md:gap-2">
@@ -213,7 +207,7 @@ export default function BookingSearch() {
           <div className="flex items-center justify-between bg-white border p-2 rounded-lg h-12 gap-5 mt-2 sm:mt-0">
             {/* <span className="flex"></span> */}
             <select
-              value={adults}
+              value={child}
               className="input p-2 rounded-xl outline-none"
               onChange={(e) => setChild(Number(e.target.value))}
             >

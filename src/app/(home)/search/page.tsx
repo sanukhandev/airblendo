@@ -4,16 +4,16 @@ import SearchHeader from "@/components/SearchHeader";
 import SearchFilter from "@/components/SearchFilter";
 import MobileFilter from "@/components/MobileFilter";
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     from?: string;
     to?: string;
     depart?: string;
     return?: string;
-  };
+  }>;
 };
 
 export default async function SearchResults({ searchParams }: Props) {
-  const { from, to, depart, return: ret } = searchParams;
+  const { from, to, depart, return: ret } = await searchParams;
 
   return (
     <div className="">
