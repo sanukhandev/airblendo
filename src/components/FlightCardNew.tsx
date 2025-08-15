@@ -109,6 +109,19 @@ const FlightCard = () => {
     return cabin?.price || 0;
   };
 
+  const getCabinClassName = (cabinType: string): string => {
+    switch (cabinType) {
+      case "premiumEconomy":
+        return "Premium Economy";
+      case "business":
+        return "Business";
+      case "first":
+        return "First Class";
+      default:
+        return "Economy";
+    }
+  };
+
   const handleBookFlight = (flight: Flight) => {
     setBookingFlow((prev) => ({
       ...prev,
