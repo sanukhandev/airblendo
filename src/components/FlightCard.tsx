@@ -1,16 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { flights } from "../../public/datasets/places";
 import { Plane, Luggage, MoreHorizontal, Briefcase } from "lucide-react";
 import Image from "next/image";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import FlightOptionsPage from "./booking/FlightOptionsPage";
-import PassengerDetailsPage from "./booking/PassengerDetailsPage";
-import PaymentPage from "./booking/PaymentPage";
-import ConfirmationPage from "./booking/ConfirmationPage";
 
 interface PassengerInfo {
   firstName: string;
@@ -74,7 +71,7 @@ interface BookingFlow {
 }
 
 const FlightCard = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
   const [bookingFlow, setBookingFlow] = useState<BookingFlow>({
     step: "search",
     selectedFlight: null,
@@ -103,12 +100,6 @@ const FlightCard = () => {
     ticketStatus: "pending",
   });
 
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const getCabinPrice = (flight: Flight, cabinClass: string): number => {
     const cabin =
       flight.cabinClasses[cabinClass as keyof typeof flight.cabinClasses];
@@ -124,56 +115,16 @@ const FlightCard = () => {
   };
 
   const handleSelectOptions = () => {
-    setBookingFlow((prev) => ({
-      ...prev,
-      step: "booking",
-    }));
-  };
-
-  const handleProceedToPayment = () => {
-    const baseFare =
-      getCabinPrice(
-        bookingFlow.selectedFlight!,
-        bookingFlow.selectedCabinClass
-      ) * bookingFlow.passengers.length;
-    const insuranceCost = bookingFlow.selectedExtras.insurance ? 25 : 0;
-    const baggageCost = bookingFlow.selectedExtras.baggage * 30;
-    const mealsCost = bookingFlow.selectedExtras.meals.length * 15;
-    const taxes = 45;
-
-    const total = baseFare + insuranceCost + baggageCost + mealsCost + taxes;
-
-    setBookingFlow((prev) => ({
-      ...prev,
-      step: "payment",
-      totalCost: total,
-    }));
-  };
-
-  const handleCompleteBooking = async () => {
-    setIsProcessing(true);
-
-    // Generate random PNR
-    const pnr = "AIR" + Math.random().toString(36).substr(2, 6).toUpperCase();
-
-    setBookingFlow((prev) => ({
-      ...prev,
-      step: "confirmation",
-      pnr: pnr,
-      ticketStatus: "pending",
-    }));
-
-    // Simulate booking processing - ticket generation after 5 seconds
-    setTimeout(() => {
-      const ticketNumber =
-        "TKT" + Math.random().toString(36).substr(2, 8).toUpperCase();
-      setBookingFlow((prev) => ({
-        ...prev,
-        ticketStatus: "confirmed",
-        pnr: ticketNumber,
-      }));
-      setIsProcessing(false);
-    }, 5000);
+    // Store flight data and navigate to booking page
+    const flightData = {
+      flightId: bookingFlow.selectedFlight?.id,
+      cabin: bookingFlow.selectedCabinClass,
+    };
+    const queryParams = new URLSearchParams({
+      flightId: flightData.flightId?.toString() || "",
+      cabin: flightData.cabin,
+    });
+    router.push(`/booking?${queryParams.toString()}`);
   };
 
   const resetBookingFlow = () => {
@@ -205,72 +156,6 @@ const FlightCard = () => {
       ticketStatus: "pending",
     });
   };
-
-  // Render different pages based on booking step using Portal for full-screen experience
-  if (
-    bookingFlow.step === "booking" &&
-    bookingFlow.selectedFlight &&
-    isMounted
-  ) {
-    return createPortal(
-      <PassengerDetailsPage
-        selectedFlight={bookingFlow.selectedFlight}
-        selectedCabinClass={bookingFlow.selectedCabinClass}
-        passengers={bookingFlow.passengers}
-        onPassengersChange={(passengers) =>
-          setBookingFlow((prev) => ({ ...prev, passengers }))
-        }
-        onContinue={handleProceedToPayment}
-        onBack={() => setBookingFlow((prev) => ({ ...prev, step: "options" }))}
-        onCancel={resetBookingFlow}
-      />,
-      document.body
-    );
-  }
-
-  if (
-    bookingFlow.step === "payment" &&
-    bookingFlow.selectedFlight &&
-    isMounted
-  ) {
-    return createPortal(
-      <PaymentPage
-        selectedFlight={bookingFlow.selectedFlight}
-        selectedCabinClass={bookingFlow.selectedCabinClass}
-        selectedExtras={bookingFlow.selectedExtras}
-        passengers={bookingFlow.passengers}
-        totalCost={bookingFlow.totalCost}
-        paymentMethod={bookingFlow.paymentMethod}
-        onPaymentMethodChange={(method) =>
-          setBookingFlow((prev) => ({ ...prev, paymentMethod: method }))
-        }
-        onCompleteBooking={handleCompleteBooking}
-        onBack={() => setBookingFlow((prev) => ({ ...prev, step: "booking" }))}
-        onCancel={resetBookingFlow}
-      />,
-      document.body
-    );
-  }
-
-  if (
-    bookingFlow.step === "confirmation" &&
-    bookingFlow.selectedFlight &&
-    isMounted
-  ) {
-    return createPortal(
-      <ConfirmationPage
-        selectedFlight={bookingFlow.selectedFlight}
-        selectedCabinClass={bookingFlow.selectedCabinClass}
-        passengers={bookingFlow.passengers}
-        totalCost={bookingFlow.totalCost}
-        pnr={bookingFlow.pnr}
-        ticketStatus={bookingFlow.ticketStatus}
-        isProcessing={isProcessing}
-        onBookAnother={resetBookingFlow}
-      />,
-      document.body
-    );
-  }
 
   return (
     <div>
